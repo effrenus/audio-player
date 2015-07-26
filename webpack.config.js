@@ -5,18 +5,18 @@ import webpack from 'webpack';
 
 const JS_REGEX = /\.js$|\.jsx$|\.es6$|\.babel$/;
 
-export default {
+const IS_PRODUCTION = 'production' === process.env.NODE_ENV;
 
-	// devtool: '#eval',
+let config = {
+
+	devtool: 'eval',
 
 	output: {
 		path: path.join(__dirname, 'dist/scripts'),
-		filename: 'bundle.js',
-		publicPath: '/static/'
+		filename: 'bundle.js'
 	},
 
 	plugins: [
-		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoErrorsPlugin()
 	],
 
@@ -27,8 +27,8 @@ export default {
 
 	module: {
 		preLoaders: [
-      {test: JS_REGEX, exclude: /node_modules/, loader: 'eslint'}
-    ],
+			{test: JS_REGEX, exclude: /node_modules/, loader: 'eslint'}
+		],
 
 		loaders: [
 			{ test: JS_REGEX, exclude: /node_modules/, loader: 'babel?optional[]=runtime&stage=0'}
@@ -38,3 +38,13 @@ export default {
 	}
 
 }
+
+if (IS_PRODUCTION) {
+	config.devtool = 'source-map';
+	config.plugins.push(
+		new webpack.optimize.UglifyJsPlugin(),
+		new webpack.optimize.DedupePlugin()
+	);
+}
+
+export default config;

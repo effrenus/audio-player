@@ -7,10 +7,12 @@ import {PLAYER_STATES} from '../../constants/Player';
 import Volume from './Volume';
 import Spectrogram from './Spectrogram';
 import TrackInfo from './TrackInfo';
+import Equalizer from './Equalizer';
 import audio from '../../audio/';
 
 const bem = {
-	player: {name: 'player', states: ['visualized']},
+	player: {name: 'player', states: ['visualized', 'equalizer']},
+	panel: {name: 'player__panel'},
 	controls: {name: 'player__controls'},
 	play_btn: {name: 'player__play', states: ['playing']}
 };
@@ -19,7 +21,7 @@ export default class AudioPlayer extends Component {
 	constructor() {
 		super();
 
-		this.state = {progress: 0, visualize: false};
+		this.state = {progress: 0, visualize: false, equalizer: false};
 
 		PlayerStore.listen(() => {
 			let storeState = PlayerStore.getState();
@@ -40,14 +42,24 @@ export default class AudioPlayer extends Component {
 			this.setState({track, playerState: storeState.playerState});
 		});
 
-		audio.on('timeupdate', this._onProgress.bind(this));
-		audio.on('ended', this._onAudioEnd.bind(this));
+		this._onProgress = this._onProgress.bind(this);
+		this._onAudioEnd = this._onAudioEnd.bind(this);
 		this.toggleVisualize = this.toggleVisualize.bind(this);
+		this.toggleEq = this.toggleEq.bind(this);
 		this.togglePlay = this.togglePlay.bind(this);
+
+		audio.on('timeupdate', this._onProgress);
+		audio.on('ended', this._onAudioEnd);
 	}
 
 	componentDidMount() {
 		this.setState({playerGeom: this.refs.player.getDOMNode().getBoundingClientRect()});
+	}
+
+	componentWillUnmount() {
+		TrackActions.stop();
+		audio.removeListener('timeupdate', this._onProgress);
+		audio.removeListener('ended', this._onAudioEnd);
 	}
 
 	isPlaying() {
@@ -82,12 +94,16 @@ export default class AudioPlayer extends Component {
 		}
 	}
 
+	toggleEq() {
+		this.setState({equalizer: !this.state.equalizer});
+	}
+
 	toggleVisualize() {
 		this.setState({visualize: !this.state.visualize});
 	}
 
 	renderTrackInfo() {
-		return (!!this.state.track) ? <TrackInfo tags={this.state.track.tags} /> : '';
+		return (!!this.state.track) ? <TrackInfo name={this.state.track.file.name} tags={this.state.track.tags} /> : '';
 	}
 
 	renderSpectrogram() {
@@ -96,21 +112,24 @@ export default class AudioPlayer extends Component {
 
 	render() {
 		return (
-			<div ref="player" className={cx(bem.player, {visualized: this.state.visualize})}>
+			<div ref="player" className={cx(bem.player, {visualized: this.state.visualize, equalizer: this.state.equalizer})}>
+				<div className={cx(bem.panel)}>
+					<div className="player__progress progress">
+						<i className="progress__bar" style={{width: this.state.progress + '%'}}></i>
+					</div>
 
-				<div className="player__progress progress">
-					<i className="progress__bar" style={{width: this.state.progress + '%'}}></i>
+					{this.renderTrackInfo()}
+
+					<div className="player__controls">
+						<button onClick={this.togglePlay} className={cx(bem.play_btn, {playing: this.isPlaying()})}></button>
+					</div>
+
+					<Volume onChange={this.setVolume} value={audio.getVolume()} />
+
+					<button title="Эквалайзер" onClick={this.toggleEq} className="button_reset player__btn_eq"></button>
+					<button title="Визуализатор спектра" onClick={this.toggleVisualize} className="button_reset player__btn_spec"></button>
 				</div>
-
-				{this.renderTrackInfo()}
-
-				<div className="player__controls">
-					<button onClick={this.togglePlay} className={cx(bem.play_btn, {playing: this.isPlaying()})}></button>
-				</div>
-
-				<Volume onChange={this.setVolume} value={audio.getVolume()} />
-
-				<button onClick={this.toggleVisualize} className="button_reset player__btn_spec"></button>
+				<Equalizer audio={audio} />
 				{this.renderSpectrogram()}
 			</div>
 			);

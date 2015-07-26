@@ -1,6 +1,6 @@
 import EventEmitter from 'events';
 
-const DEFAULT_VOLUME = 60;
+const DEFAULT_VOLUME = 90;
 
 class AudioBase extends EventEmitter {
 	constructor() {

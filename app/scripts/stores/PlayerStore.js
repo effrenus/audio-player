@@ -9,6 +9,7 @@ class PlayerStore {
 			handlePlay: TrackActions.PLAY,
 			handleResume: TrackActions.RESUME,
 			handlePause: TrackActions.PAUSE,
+			handleStop: TrackActions.STOP,
 			handleNext: TrackActions.NEXT
 		});
 	}
@@ -36,8 +37,16 @@ class PlayerStore {
 		this.playerState = PLAYER_STATES.PAUSED;
 	}
 
+	handleStop() {
+		this.activeTrackId = undefined;
+		this.playerState = PLAYER_STATES.STOPPED;
+	}
+
 	handleNext() {
 		let nextId = FilesStore.getNextID(this.activeTrackId);
+		if (!nextId) {
+			return false;
+		}
 		this.activeTrackId = nextId;
 		this.playerState = PLAYER_STATES.PLAYING;
 	}
