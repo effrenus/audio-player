@@ -1,10 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import cx from 'bem-classnames';
 import bem from './bem-classes';
-import FilesActions from '../../actions/FilesActions';
-import _ from 'lodash';
+// import _ from 'lodash';
 
-export default class Droparea extends React.Component {
+export default class Droparea extends Component {
 
 	constructor(props) {
 		super(props);
@@ -25,12 +24,11 @@ export default class Droparea extends React.Component {
 		event.preventDefault();
 		this._toggleDropState();
 
-		_.forEach(event.dataTransfer.items, (item) => {
-			console.log(item);
-		});
-		console.log(event.dataTransfer.files.length);
+		// _.forEach(event.dataTransfer.items, (item) => {
+		// 	console.log(item);
+		// });
 		let files = event.dataTransfer.files;
-		FilesActions.updateFiles(files);
+		this.props.onDrop && this.props.onDrop(files);
 	}
 
 	render() {

@@ -4,12 +4,18 @@ import _ from 'lodash';
 export default class Spectrogram extends Component {
 	constructor(props) {
 		super(props);
+
+		this._renderSpect = this._renderSpect.bind(this);
 	}
 
 	componentDidMount() {
 		this.ctx = this.refs.canvas.getDOMNode().getContext('2d');
 
 		this.props.audio.on('audioprocess', this._renderSpect.bind(this));
+	}
+
+	componentWillUnmount() {
+		this.props.audio.removeListener('audioprocess', this._renderSpect);
 	}
 
 	_draw(array) {

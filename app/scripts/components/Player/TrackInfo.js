@@ -5,13 +5,21 @@ export default class TrackInfo extends Component {
 		return '';
 	}
 
+	renderTitle() {
+		let title = this.props.tags ? this.props.tags.title : this.props.name;
+		return <span className="player__title">{title}</span>;
+	}
+
+	renderArtist() {
+		return (this.props.tags && this.props.tags.artist) ? <span className="player__artist">{this.props.tags.artist}</span> : '';
+	}
+
 	render() {
-		let tags = this.props.tags;
 		return (
 			<div className="player__info">
 				{this.renderCover()}
-				<span className="player__title">{tags.title}</span>
-				<span className="player__artist">{tags.artist}</span>
+				{this.renderTitle()}
+				{this.renderArtist()}
 			</div>
 		);
 	}
