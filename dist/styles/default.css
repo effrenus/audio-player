@@ -218,36 +218,31 @@ body {
   .player .spectrogram {
     display: none;
     margin-top: 5px; }
-  .player__btn_spec {
+  .player__btn {
     position: absolute;
     bottom: 5px;
-    right: 5px;
-    cursor: pointer;
+    width: 30px;
+    height: 30px;
     outline: none;
-    border: 1px solid transparent;
-    border-radius: 2px; }
+    cursor: pointer;
+    text-align: center;
+    line-height: 30px; }
+  .player__btn_spec {
+    right: 5px; }
     .player__btn_spec:before {
       font-family: Flaticon;
       content: '\e009';
       font-size: 1.3em; }
   .player.is-visualized .player__btn_spec {
-    border: 1px solid #ec9575;
-    color: #136a8a; }
+    background-color: #a9dff3; }
   .player__btn_eq {
-    position: absolute;
-    bottom: 5px;
-    right: 40px;
-    cursor: pointer;
-    outline: none;
-    border: 1px solid transparent;
-    border-radius: 2px; }
+    right: 40px; }
     .player__btn_eq:before {
       font-family: Flaticon;
       content: '\e008';
       font-size: 1em; }
   .player.is-equalizer .player__btn_eq {
-    border: 1px solid #ec9575;
-    color: #136a8a; }
+    background-color: #a9dff3; }
   .player.is-equalizer .equalizer {
     display: block; }
 
@@ -318,3 +313,5 @@ body {
     font-size: 0.75em;
     cursor: pointer;
     background-color: #d6f0f9; }
+    .equalizer__set.is-active {
+      background-color: #7ccfed; }
