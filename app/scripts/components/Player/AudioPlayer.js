@@ -110,7 +110,7 @@ export default class AudioPlayer extends Component {
 
 				<Volume onChange={this.setVolume} value={audio.getVolume()} />
 
-				<button onClick={this.toggleVisualize} className="button_reset player__btn_spec"></button>
+				<button title="Визуализатор спектра" onClick={this.toggleVisualize} className="button_reset player__btn_spec"></button>
 				{this.renderSpectrogram()}
 			</div>
 			);
