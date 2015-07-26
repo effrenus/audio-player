@@ -1,0 +1,292 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+	 v2.0 | 20110126
+	 License: none (public domain) */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+html {
+  width: 100%;
+  height: 100%; }
+
+body {
+  min-height: 100%;
+  font-family: "Roboto", sans-serif; }
+  body:before {
+    content: '';
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: linear-gradient(0, #136a8a 0, #267871 100%);
+    z-index: 1; }
+
+.app {
+  position: relative;
+  top: 30px;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  overflow: hidden;
+  z-index: 2;
+  background-color: #FFF;
+  border-radius: 5px; }
+
+.button {
+  border: 0;
+  color: #FFF;
+  border-radius: 3px;
+  background: linear-gradient(0, #136a8a 0, #267871 100%);
+  box-shadow: inset 0 0 5px #22ade1;
+  cursor: pointer; }
+  .button_size_s {
+    padding: 5px 15px; }
+  .button_reset {
+    border: 0;
+    background: none; }
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("../fonts/flaticon.eot");
+  src: url("../fonts/flaticon.eot#iefix") format("embedded-opentype"), url("../fonts/flaticon.woff") format("woff"), url("../fonts/flaticon.ttf") format("truetype"), url("../fonts/flaticon.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+.file-manager {
+  position: relative;
+  height: 50px;
+  margin-bottom: 20px; }
+  .file-manager__droparea {
+    height: 100%;
+    background-color: #EEE;
+    background-clip: content-box;
+    box-sizing: border-box;
+    border: 2px dashed #DDD;
+    border-width: 2px 0; }
+    .file-manager__droparea.is-active {
+      background-color: #a9dff3;
+      border-style: solid; }
+  .file-manager__file {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden; }
+  .file-manager__text {
+    position: absolute;
+    top: 32%;
+    left: 15px;
+    right: 15px;
+    text-align: center;
+    line-height: 1.45;
+    font-size: 0.9em;
+    color: #0d485d;
+    text-shadow: 0 1px #FFF; }
+
+.volume-control {
+  position: relative;
+  width: 100px;
+  height: 4px;
+  border: 1px solid #bbb;
+  border-radius: 5px; }
+  .volume-control:after, .volume-control:before {
+    position: absolute;
+    top: -3px;
+    font-family: "Flaticon";
+    font-size: 11px;
+    color: #000;
+    opacity: 0;
+    transition: opacity 0.3s; }
+  .volume-control:after {
+    content: '\e006';
+    left: 100%;
+    margin-left: 5px; }
+  .volume-control:before {
+    content: '\e007';
+    left: -15px; }
+  .volume-control .handle {
+    position: absolute;
+    left: 0;
+    top: -5px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #FFF;
+    box-shadow: 0 0 1px #333;
+    cursor: pointer; }
+    .volume-control .handle.active {
+      box-shadow: 0 0 3px #136a8a; }
+
+.player {
+  position: relative;
+  height: 100px;
+  margin-bottom: 20px;
+  background-color: #EEE;
+  box-shadow: 0 0 5px #66c6ea; }
+  .player.is-visualized {
+    margin-bottom: 120px; }
+  .player__progress {
+    position: absolute;
+    top: 21px;
+    left: 80px;
+    width: 50%;
+    height: 4px;
+    background-color: rgba(100, 100, 100, 0.3);
+    border-radius: 3px; }
+  .player__volume {
+    position: absolute;
+    right: 20px;
+    top: 21px; }
+  .player:hover .player__volume .volume-control:after,
+  .player:hover .player__volume .volume-control:before {
+    opacity: 1; }
+  .player__info {
+    position: absolute;
+    width: 300px;
+    left: 30px;
+    right: 20px;
+    top: 45px; }
+  .player__title {
+    display: block;
+    margin-bottom: 10px;
+    color: #000;
+    font-size: 1.2em; }
+  .player__artist {
+    display: block;
+    color: #555;
+    font-size: 0.9em; }
+  .player__controls {
+    position: absolute;
+    left: 20px;
+    top: 5px; }
+  .player__play {
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    font-family: Flaticon;
+    font-size: 1em;
+    color: #136a8a;
+    cursor: pointer;
+    outline: none; }
+    .player__play:hover {
+      color: #ec9575; }
+    .player__play.is-playing:before {
+      content: '\e002'; }
+    .player__play:before {
+      content: '\e003'; }
+  .player .spectrogram {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0; }
+  .player__btn_spec {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 2px; }
+    .player__btn_spec:before {
+      font-family: Flaticon;
+      content: '\e009';
+      font-size: 1.3em; }
+  .player.is-visualized .player__btn_spec {
+    border: 1px solid #ec9575; }
+    .player.is-visualized .player__btn_spec:before {
+      color: #136a8a; }
+
+.progress {
+  cursor: pointer; }
+  .progress__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    font-size: 0;
+    line-height: 0;
+    background-color: #dd521e;
+    border-radius: 3px; }
+
+.tracklist {
+  margin-bottom: 30px; }
+  .tracklist__header {
+    margin: 0 0 0.5em 10px;
+    font-size: 1.5em; }
+  .tracklist__track {
+    position: relative;
+    min-height: 50px;
+    margin-left: 50px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #DDD;
+    line-height: 1.5; }
+    .tracklist__track:last-child {
+      border: 0; }
+    .tracklist__track.is-active {
+      background-color: #EEE; }
+    .tracklist__track .track-control {
+      position: absolute;
+      left: -40px;
+      top: 13px;
+      color: #22ade1; }
+    .tracklist__track .track-control:before {
+      content: "\e003"; }
+    .tracklist__track.is-playing .track-control:before {
+      content: "\e002"; }
+  .tracklist__name {
+    display: block; }
+  .tracklist__album {
+    color: #777;
+    font-size: 0.85em; }
+  .tracklist__empty {
+    text-align: center; }
+
+.track-control {
+  font-family: Flaticon;
+  font-size: 1em;
+  font-style: normal;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none; }
