@@ -1,4 +1,6 @@
 
 TODO:
-- equalizer feature
+- equalizer feature (-presets-, personal)
+- classNames
+- tests
 - refactoring
