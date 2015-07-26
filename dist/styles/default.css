@@ -157,13 +157,12 @@ body {
       box-shadow: 0 0 3px #136a8a; }
 
 .player {
-  position: relative;
-  height: 100px;
-  margin-bottom: 20px;
-  background-color: #EEE;
-  box-shadow: 0 0 5px #66c6ea; }
-  .player.is-visualized {
-    margin-bottom: 120px; }
+  margin-bottom: 20px; }
+  .player__panel {
+    position: relative;
+    height: 100px;
+    background-color: #EEE;
+    box-shadow: 0 0 5px #66c6ea; }
   .player__progress {
     position: absolute;
     top: 21px;
@@ -181,13 +180,16 @@ body {
     opacity: 1; }
   .player__info {
     position: absolute;
-    width: 300px;
     left: 30px;
     right: 20px;
     top: 45px; }
   .player__title {
     display: block;
+    width: 100%;
     margin-bottom: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     color: #000;
     font-size: 1.2em; }
   .player__artist {
@@ -215,13 +217,11 @@ body {
       content: '\e003'; }
   .player .spectrogram {
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 0; }
+    margin-top: 5px; }
   .player__btn_spec {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 5px;
+    right: 5px;
     cursor: pointer;
     outline: none;
     border: 1px solid transparent;
@@ -231,9 +231,25 @@ body {
       content: '\e009';
       font-size: 1.3em; }
   .player.is-visualized .player__btn_spec {
-    border: 1px solid #ec9575; }
-    .player.is-visualized .player__btn_spec:before {
-      color: #136a8a; }
+    border: 1px solid #ec9575;
+    color: #136a8a; }
+  .player__btn_eq {
+    position: absolute;
+    bottom: 5px;
+    right: 40px;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 2px; }
+    .player__btn_eq:before {
+      font-family: Flaticon;
+      content: '\e008';
+      font-size: 1em; }
+  .player.is-equalizer .player__btn_eq {
+    border: 1px solid #ec9575;
+    color: #136a8a; }
+  .player.is-equalizer .equalizer {
+    display: block; }
 
 .progress {
   cursor: pointer; }
@@ -290,3 +306,15 @@ body {
   background-color: transparent;
   cursor: pointer;
   outline: none; }
+
+.equalizer {
+  display: none;
+  padding: 10px; }
+  .equalizer__set {
+    display: inline-block;
+    margin: 0 5px 5px 0;
+    padding: 3px 5px;
+    text-transform: uppercase;
+    font-size: 0.75em;
+    cursor: pointer;
+    background-color: #d6f0f9; }
