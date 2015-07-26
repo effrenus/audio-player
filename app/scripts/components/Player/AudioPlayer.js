@@ -126,8 +126,8 @@ export default class AudioPlayer extends Component {
 
 					<Volume onChange={this.setVolume} value={audio.getVolume()} />
 
-					<button title="Эквалайзер" onClick={this.toggleEq} className="button_reset player__btn_eq"></button>
-					<button title="Визуализатор спектра" onClick={this.toggleVisualize} className="button_reset player__btn_spec"></button>
+					<button title="Эквалайзер" onClick={this.toggleEq} className="button_reset player__btn player__btn_eq"></button>
+					<button title="Визуализатор спектра" onClick={this.toggleVisualize} className="button_reset player__btn player__btn_spec"></button>
 				</div>
 				<Equalizer audio={audio} />
 				{this.renderSpectrogram()}
