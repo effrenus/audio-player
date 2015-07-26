@@ -1,0 +1,45 @@
+html
+	width: 100%
+	height: 100%
+
+body
+	min-height: 100%
+	font-family: "Roboto", sans-serif
+
+	&:before
+		content: ''
+		position: fixed
+		width: 100%
+		height: 100%
+		left: 0
+		top: 0
+		background: linear-gradient(0, #136a8a 0, #267871 100%)
+		z-index: 1
+
+.app
+	position: relative
+	top: 30px
+	width: 100%
+	max-width: 500px
+	margin: auto
+	overflow: hidden
+	z-index: 2
+	background-color: #FFF
+	border-radius: 5px
+	// border: 2px solid #CCC
+	// border-image: linear-gradient(0deg, #1e130c 0, #9a8478 100%) 14% stretch
+
+.button
+	border: 0
+	color: #FFF
+	border-radius: 3px
+	background: linear-gradient(0, #136a8a 0, #267871 100%)
+	box-shadow: inset 0 0 5px lighten($main-color, 20%)
+	cursor: pointer
+
+	&_size_s
+		padding: 5px 15px
+
+	&_reset
+		border: 0
+		background: none

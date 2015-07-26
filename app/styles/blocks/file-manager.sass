@@ -1,0 +1,33 @@
+.file-manager
+	position: relative
+	height: 50px
+	margin-bottom: 20px
+
+	&__droparea
+		height: 100%
+		background-color: #EEE
+		background-clip: content-box
+		box-sizing: border-box
+		border: 2px dashed #DDD
+		border-width: 2px 0
+
+		&.is-active
+			background-color: lighten($main-color, 50%)
+			border-style: solid
+
+	&__file
+		position: absolute
+		bottom: 0
+		left: 0
+		visibility: hidden
+
+	&__text
+		position: absolute
+		top: 32%
+		left: 15px
+		right: 15px
+		text-align: center
+		line-height: 1.45
+		font-size: 0.9em
+		color: darken($main-color, 10%)
+		text-shadow: 0 1px #FFF

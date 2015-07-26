@@ -1,0 +1,43 @@
+.tracklist
+	margin-bottom: 30px
+
+	&__header
+		margin: 0 0 0.5em 10px
+		font-size: 1.5em
+
+	&__track
+		position: relative
+		min-height: 50px
+		margin-left: 50px
+		padding: 10px
+		box-sizing: border-box
+		border-bottom: 1px solid #DDD
+		line-height: 1.5
+
+		&:last-child
+			border: 0
+
+		&.is-active
+			background-color: #EEE
+
+		& .track-control
+			position: absolute
+			left: -40px
+			top: 13px
+			color: lighten($main-color, 20%)
+
+		& .track-control:before
+			content: "\e003"
+
+		&.is-playing .track-control:before
+			content: "\e002"
+
+	&__name
+		display: block
+
+	&__album
+		color: #777
+		font-size: 0.85em
+
+	&__empty
+		text-align: center

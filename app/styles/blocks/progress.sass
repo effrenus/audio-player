@@ -1,0 +1,15 @@
+$bar-color: invert($main-color)
+
+.progress
+	cursor: pointer
+
+	&__bar
+		position: absolute
+		left: 0
+		top:	0
+		width: 0
+		height: 100%
+		font-size: 0
+		line-height: 0
+		background-color: darken($bar-color, 20%)
+		border-radius: 3px

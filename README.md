@@ -1,0 +1,4 @@
+
+TODO:
+- equalizer feature
+- refactoring

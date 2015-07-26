@@ -1,0 +1,38 @@
+.volume-control
+	position: relative
+	width: 100px
+	height: 4px;
+	border: 1px solid #bbb
+	border-radius: 5px
+
+	&:after, &:before
+		position: absolute
+		top: -3px
+		font-family: "Flaticon"
+		font-size: 11px
+		color: #000
+		opacity: 0
+		transition: opacity 0.3s
+
+	&:after
+		content: '\e006'
+		left: 100%
+		margin-left: 5px
+
+	&:before
+		content: '\e007'
+		left: -15px
+
+	& .handle
+		position: absolute
+		left: 0
+		top: -5px
+		width: 16px
+		height: 16px
+		border-radius: 50%
+		background-color: #FFF
+		box-shadow: 0 0 1px #333
+		cursor: pointer
+
+		&.active
+			box-shadow: 0 0 3px $main-color
