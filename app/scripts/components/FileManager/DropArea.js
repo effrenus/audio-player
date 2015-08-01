@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import cx from 'bem-classnames';
 import bem from './bem-classes';
-// import _ from 'lodash';
 
 export default class Droparea extends Component {
 

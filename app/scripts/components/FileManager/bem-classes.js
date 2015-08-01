@@ -1,13 +1,19 @@
+const componentName = 'file-manager';
 
 const bem = {
+	manager: {
+		name: componentName
+	},
 	droparea: {
-		name: 'file-manager__droparea',
+		name: `${componentName}__droparea`,
 		states: ['active']
 	},
 	text: {
-		name: 'file-manager__text'
+		name: `${componentName}__text`
+	},
+	file: {
+		name: `${componentName}__file`
 	}
 };
-
 
 export default bem;
