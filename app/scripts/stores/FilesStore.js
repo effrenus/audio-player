@@ -1,11 +1,13 @@
 import alt from '../alt';
 import FilesActions from '../actions/FilesActions';
+import PlayerStore from './PlayerStore';
 import _ from 'lodash';
 
 class FilesStore {
 	constructor() {
 		this.bindListeners({
-			handleNewFile: FilesActions.NEW_FILE
+			handleNewFile: FilesActions.APPEND,
+			handleDelete: FilesActions.DELETE
 		});
 
 		this.state = {
@@ -15,6 +17,16 @@ class FilesStore {
 
 	handleNewFile(file) {
 		this.state.files.push(file);
+	}
+
+	handleDelete(id) {
+		this.waitFor(PlayerStore.dispatchToken);
+
+		this.setState({
+			files: this.state.files.filter((file) => {
+				return file.id !== id;
+			})
+		});
 	}
 
 	static getFile(id) {

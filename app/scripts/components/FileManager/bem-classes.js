@@ -11,6 +11,9 @@ const bem = {
 	text: {
 		name: `${componentName}__text`
 	},
+	text_btn: {
+		name: `${componentName}__text-btn`
+	},
 	file: {
 		name: `${componentName}__file`
 	}

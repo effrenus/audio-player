@@ -1,6 +1,7 @@
 import cx from 'bem-classnames';
 import React, {Component} from 'react';
 import TrackActions from '../../actions/TrackActions';
+import FilesActions from '../../actions/FilesActions';
 import {PLAYER_STATES} from '../../constants/Player';
 
 const bem = {
@@ -16,6 +17,9 @@ const bem = {
 	},
 	album: {
 		name: 'tracklist__album'
+	},
+	delete: {
+		name: 'tracklist__delete'
 	}
 };
 
@@ -23,6 +27,7 @@ export default class Track extends Component {
 	constructor(props) {
 		super(props);
 		this.play = this.play.bind(this);
+		this.delete = this.delete.bind(this);
 	}
 
 	isPlaying() {
@@ -46,6 +51,11 @@ export default class Track extends Component {
 		TrackActions.pause();
 	}
 
+	delete(event) {
+		event.stopPropagation();
+		FilesActions.delete(this.props.track.id);
+	}
+
 	renderControl() {
 		return (
 			<button className={cx(bem.control)} onClick={this.isPaused() ? this.resume : (this.isPlaying() ? this.pause : this.play)}>
@@ -53,24 +63,14 @@ export default class Track extends Component {
 		);
 	}
 
-	renderTagData() {
-		return (
-			<div>
-				<span className={cx(bem.name)}>{this.props.track.tags.title}</span>
-				<span className={cx(bem.album)}>{this.props.track.tags.album}</span>
-			</div>
-		);
-	}
-
-	renderFileName() {
-		return <span className={cx(bem.name)}>{this.props.track.file.name}</span>;
-	}
-
 	render() {
+		let albumTtitle = this.props.track.album ? <span className={cx(bem.album)}>{this.props.track.album}</span> : '';
 		return (
-			<div className={cx(bem.track, {active: this.props.active, paused: this.isPaused(), playing: this.isPlaying()})}>
+			<div onClick={this.isPaused() ? this.resume : (this.isPlaying() ? this.pause : this.play)} className={cx(bem.track, {active: this.props.active, paused: this.isPaused(), playing: this.isPlaying()})}>
 				{this.renderControl()}
-				{this.props.track.tags ? this.renderTagData() : this.renderFileName()}
+				<span className={cx(bem.name)}>{this.props.track.title}</span>
+				{albumTtitle}
+				<b onClick={this.delete} className={cx(bem.delete)}>&times;</b>
 			</div>
 		);
 	}

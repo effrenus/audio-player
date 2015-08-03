@@ -1,5 +1,6 @@
 import alt from '../alt';
 import TrackActions from '../actions/TrackActions';
+import FilesActions from '../actions/FilesActions';
 import {PLAYER_STATES} from '../constants/Player';
 import FilesStore from './FilesStore';
 
@@ -10,7 +11,8 @@ class PlayerStore {
 			handleResume: TrackActions.RESUME,
 			handlePause: TrackActions.PAUSE,
 			handleStop: TrackActions.STOP,
-			handleNext: TrackActions.NEXT
+			handleNext: TrackActions.NEXT,
+			handleFileDelete: FilesActions.DELETE
 		});
 	}
 
@@ -49,6 +51,20 @@ class PlayerStore {
 		}
 		this.activeTrackId = nextId;
 		this.playerState = PLAYER_STATES.PLAYING;
+	}
+
+	handleFileDelete(deleteTrackID) {
+		if (this.activeTrackId === deleteTrackID) {
+			let nextId = FilesStore.getNextID(this.activeTrackId);
+			if (!nextId) {
+				this.activeTrackId = undefined;
+				this.playerState = PLAYER_STATES.STOPPED;
+			}
+			else {
+				this.activeTrackId = nextId;
+				this.playerState = PLAYER_STATES.PLAYING;
+			}
+		}
 	}
 }
 

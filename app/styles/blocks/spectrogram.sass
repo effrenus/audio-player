@@ -1,0 +1,17 @@
+.spectrogram
+	position: relative
+	z-index: 1000
+
+	&__input
+		position: absolute
+		visibility: hidden
+
+	&__label
+		display: inline-block
+		margin: 5px
+		padding: 5px 10px
+		border: 1px solid #eee
+		cursor: pointer
+
+	&__input:checked+&__label
+		background-color: #eee
