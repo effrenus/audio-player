@@ -8,8 +8,8 @@ gulp.task('copy:fonts', () => {
 
 gulp.task('copy:js', () => {
 	gulp
-		.src('app/libs/*')
-		.pipe(gulp.dest('dist/libs'));
+		.src('app/scripts/libs/*')
+		.pipe(gulp.dest('dist/scripts/libs'));
 })
 
 gulp.task('copy', ['copy:fonts', 'copy:js']);

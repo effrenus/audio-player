@@ -58,6 +58,7 @@ body {
     height: 100%;
     left: 0;
     top: 0;
+    background: #136a8a;
     background: linear-gradient(0, #136a8a 0, #267871 100%);
     z-index: 1; }
 
@@ -95,7 +96,8 @@ body {
 .file-manager {
   position: relative;
   height: 50px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  cursor: pointer; }
   .file-manager__droparea {
     height: 100%;
     background-color: #EEE;
@@ -121,6 +123,12 @@ body {
     font-size: 0.9em;
     color: #0d485d;
     text-shadow: 0 1px #FFF; }
+  .file-manager__text-btn {
+    display: inline-block;
+    padding: 2px 5px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    box-shadow: inset 0 0 5px #fff; }
 
 .volume-control {
   position: relative;
@@ -245,6 +253,16 @@ body {
     background-color: #a9dff3; }
   .player.is-equalizer .equalizer {
     display: block; }
+  .player__time {
+    position: absolute;
+    right: 170px;
+    top: 27px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    font-size: 0.8em;
+    color: #555; }
+  .player__panel:hover .player__time {
+    opacity: 0.9; }
 
 .progress {
   cursor: pointer; }
@@ -268,10 +286,11 @@ body {
     position: relative;
     min-height: 50px;
     margin-left: 50px;
-    padding: 10px;
+    padding: 5px 10px;
     box-sizing: border-box;
     border-bottom: 1px solid #DDD;
-    line-height: 1.5; }
+    line-height: 1.5;
+    cursor: pointer; }
     .tracklist__track:last-child {
       border: 0; }
     .tracklist__track.is-active {
@@ -292,6 +311,20 @@ body {
     font-size: 0.85em; }
   .tracklist__empty {
     text-align: center; }
+  .tracklist__delete {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    width: 25px;
+    height: 25px;
+    opacity: 0;
+    transition: opacity 0.4s;
+    background-color: #FFF;
+    text-align: center;
+    line-height: 25px;
+    font-size: 1.5rem; }
+  .tracklist__track:hover .tracklist__delete {
+    opacity: 1; }
 
 .track-control {
   font-family: Flaticon;
@@ -315,3 +348,18 @@ body {
     background-color: #d6f0f9; }
     .equalizer__set.is-active {
       background-color: #7ccfed; }
+
+.spectrogram {
+  position: relative;
+  z-index: 1000; }
+  .spectrogram__input {
+    position: absolute;
+    visibility: hidden; }
+  .spectrogram__label {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    border: 1px solid #eee;
+    cursor: pointer; }
+  .spectrogram__input:checked + .spectrogram__label {
+    background-color: #eee; }
