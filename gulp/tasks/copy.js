@@ -6,4 +6,10 @@ gulp.task('copy:fonts', () => {
 		.pipe(gulp.dest('dist/fonts'));
 })
 
-gulp.task('copy', ['copy:fonts']);
+gulp.task('copy:js', () => {
+	gulp
+		.src('app/libs/*')
+		.pipe(gulp.dest('dist/libs'));
+})
+
+gulp.task('copy', ['copy:fonts', 'copy:js']);
