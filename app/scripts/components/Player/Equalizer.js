@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
-import presets from './presets';
 import cx from 'bem-classnames';
-
-const bem = {
-	eq: {name: 'equalizer'},
-	set: {name: 'equalizer__set', states: ['active']}
-};
+import presets from './eq-presets';
+import bem from './eq-bem';
 
 export default class Equalizer extends Component {
 	constructor() {

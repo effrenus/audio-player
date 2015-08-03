@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import cx from 'bem-classnames';
 import bem from './bem-classes';
-// import _ from 'lodash';
 
 export default class Droparea extends Component {
 
@@ -24,9 +23,6 @@ export default class Droparea extends Component {
 		event.preventDefault();
 		this._toggleDropState();
 
-		// _.forEach(event.dataTransfer.items, (item) => {
-		// 	console.log(item);
-		// });
 		let files = event.dataTransfer.files;
 		this.props.onDrop && this.props.onDrop(files);
 	}
@@ -38,7 +34,7 @@ export default class Droparea extends Component {
 				onDragEnter={this._toggleDropState}
 				onDragLeave={this._toggleDropState}
 				className={cx(bem.droparea, {active: this.state.active})}>
-				<span className={cx(bem.text)}>Чтобы загрузить треки, перетащите их сюда</span>
+				<span className={cx(bem.text)}>Чтобы <b className={cx(bem.text_btn)}>загрузить</b> треки, перетащите их сюда</span>
 			</div>
 		);
 	}

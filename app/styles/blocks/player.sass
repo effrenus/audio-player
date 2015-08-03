@@ -7,9 +7,6 @@
 		background-color: #EEE
 		box-shadow: 0 0 5px lighten($main-color, 35%)
 
-	// &.is-visualized
-	// 	margin-bottom: 120px
-
 	&__progress
 		position: absolute
 		top: 21px
@@ -112,3 +109,15 @@
 
 	&.is-equalizer	.equalizer
 		display: block
+
+	&__time
+		position: absolute
+		right: 170px
+		top: 27px
+		opacity: 0
+		transition: opacity 0.5s
+		font-size: 0.8em
+		color: #555
+
+	&__panel:hover &__time
+		opacity: 0.9

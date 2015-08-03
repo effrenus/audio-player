@@ -10,7 +10,9 @@ class AudioContext extends AudioBase {
 		this.source = this.context.createMediaElementSource(this.audio_elm);
 
 		this.analyser = this.context.createAnalyser();
-		this.analyser.smoothingTimeConstant = 0.3;
+		this.analyser.minDecibels = -140;
+		this.analyser.maxDecibels = 0;
+		this.analyser.smoothingTimeConstant = 0.5;
 		this.analyser.fftSize = 512;
 
 		this.jsNode = context.createScriptProcessor(2048, 1, 1);
@@ -61,11 +63,6 @@ class AudioContext extends AudioBase {
 		this.analyser.connect(this.context.destination);
 
 		super.playSound();
-	}
-
-	playAudioFromFile(file) {
-		this.audio_elm.src = URL.createObjectURL(file);
-		this.playSound();
 	}
 }
 

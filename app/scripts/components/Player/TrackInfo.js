@@ -2,22 +2,20 @@ import React, {Component} from 'react';
 
 export default class TrackInfo extends Component {
 	renderCover() {
-		return '';
+		return <img alt={this.props.track.title} src={this.props.track.image} />;
 	}
 
 	renderTitle() {
-		let title = this.props.tags ? this.props.tags.title : this.props.name;
-		return <span className="player__title">{title}</span>;
+		return <span className="player__title">{this.props.track.title}</span>;
 	}
 
 	renderArtist() {
-		return (this.props.tags && this.props.tags.artist) ? <span className="player__artist">{this.props.tags.artist}</span> : '';
+		return (this.props.track.artist) ? <span className="player__artist">{this.props.track.artist}</span> : '';
 	}
 
 	render() {
 		return (
 			<div className="player__info">
-				{this.renderCover()}
 				{this.renderTitle()}
 				{this.renderArtist()}
 			</div>
