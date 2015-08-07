@@ -4,12 +4,17 @@ import alt from '../alt';
 import uuid from 'random-uuid-v4';
 import mimeTypes from '../audio/mime';
 import _ from 'lodash';
+import ThreadPool from 'threadpool-js';
+
+/**
+ * Create workers pool to get audio ID3 tags in separate threads
+ * @type {ThreadPool}
+ */
+const pool = new ThreadPool(navigator.hardwareConcurrency || 4);
 
 class FilesActions {
 
-	append(file) {
-		let tags = ID3.getAllTags(file.name);
-
+	append(file, tags) {
 		let track = {
 			id: uuid(),
 			title: tags.title || file.name,
@@ -35,16 +40,11 @@ class FilesActions {
 	}
 
 	updateFiles(files) {
-		_.forEach(files, (file) => {
+		pool.run('./scripts/worker.js', {file: files[0]});
+
+		_.forEach(files, file => {
 			if (mimeTypes.indexOf(file.type) >= 0) {
-				ID3.loadTags(
-					file.name,
-					this.actions.append.bind(this, file),
-					{
-						tags: ['title', 'artist', 'album', 'picture'],
-						dataReader: FileAPIReader(file)
-					}
-				);
+				pool.run('./scripts/worker.js', {file}).done(this.actions.append.bind(this, file));
 			}
 		});
 
